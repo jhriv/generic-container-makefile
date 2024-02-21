@@ -18,6 +18,13 @@ IMAGE_OSTYPE ?= $(shell docker info --format '{{ .OSType }}')
 IMAGE_ARCHITECTURE ?= $(shell docker info --format '{{ .Architecture }}')
 IMAGE_PLATFORM ?= $(IMAGE_OSTYPE)/$(IMAGE_ARCHITECTURE)
 TAG ?= $(CONTAINER_REPO)/$(CONTAINER_LIBRARY)/$(CONTAINER_IMAGE):$(CONTAINER_TAG)
+_SOURCE_REPOSITORY ?= https://raw.githubusercontent.com/jhriv/generic-container-makefile/main
+
+
+init: .make.env Dockerfile compose.yaml
+
+Dockerfile compose.yaml:
+	@wget -O $@ $(_SOURCE_REPOSITORY)/$@.sample
 
 # this is probably overly complicated and convoluted
 # find all the variables defined with ?=, print the name and the calculated
