@@ -57,6 +57,7 @@ run:
 		--hostname $(CONTAINER_NAME) \
 		--interactive \
 		--name $(CONTAINER_NAME) \
+		--rm \
 		--tty \
 		${TAG}
 
