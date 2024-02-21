@@ -24,7 +24,8 @@ _SOURCE_REPOSITORY ?= https://raw.githubusercontent.com/jhriv/generic-container-
 init: .make.env Dockerfile compose.yaml
 
 Dockerfile compose.yaml:
-	@wget -O $@ $(_SOURCE_REPOSITORY)/$@.sample
+	@wget --quiet --output-document=$@ $(_SOURCE_REPOSITORY)/$@.sample
+	@echo "$@ sample downloaded"
 
 # this is probably overly complicated and convoluted
 # find all the variables defined with ?=, print the name and the calculated
@@ -36,6 +37,7 @@ Dockerfile compose.yaml:
 		| while read V; do \
 			echo "# $$V := $$($(MAKE) -f $(WHOAMI) V=$$V _print_var)"; \
 		done ) > $@
+	@echo "$@ created with default values"
 
 .PHONY: _print_var
 _print_var:
@@ -72,7 +74,7 @@ root:
 up:
 	@$(CONTAINER_ENGINE) compose --file $(COMPOSE_FILE) up
 
-.PHONE: stop
+.PHONY: stop
 stop:
 	@$(CONTAINER_ENGINE) compose --file $(COMPOSE_FILE) stop
 
@@ -84,6 +86,6 @@ clean:
 veryclean:
 	@$(CONTAINER_ENGINE) compose --file $(COMPOSE_FILE) down --remove-orphans --volumes --rmi all
 
-.PHONE: console
+.PHONY: console
 console:
 	@$(CONTAINER_ENGINE) compose --file $(COMPOSE_FILE) run --rm $(NAME) /bin/bash
