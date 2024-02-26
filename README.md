@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Provide a not-very-opinionated Makefile with simple targets for building and running containers
+Provide a not-very-opinionated `Makefile` with simple targets for building and running containers
 
 ## Instructions
 
@@ -19,17 +19,17 @@ Either clone this repo, or copy the [Makefile](Makefile) to your project
 ## Running the Image
 
 - `make run`
-- `make root` run as a privledged user
+- `make root` run as a privledged user (passes `--user=root`)
 
 ## Compose Support
 
 - `up`
 - `stop`
-- `clean`
-- `veryclean`
+- `clean` stops the containers, removes orphans and volumes
+- `veryclean` clean, and removes all images
 - `console`
 
-### 
+###
 ## Options
 
 - `COMPOSE_FILE`
