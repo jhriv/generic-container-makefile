@@ -33,7 +33,7 @@ Dockerfile compose.yaml:
 .make.env:
 	@( echo '# Uncomment and change as needed'; \
 	   echo; \
-	   sed -nE 's/([A-Z_]+) \?=.*/\1/p' $(realpath $(WHOAMI)) \
+	   sed -nE 's/(^[A-Z][A-Z_]*) \?=.*/\1/p' $(realpath $(WHOAMI)) \
 		| while read V; do \
 			echo "# $$V := $$($(MAKE) -f $(WHOAMI) V=$$V _print_var)"; \
 		done ) > $@
