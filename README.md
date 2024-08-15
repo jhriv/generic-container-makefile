@@ -23,6 +23,8 @@ Either clone this repo, or copy the [Makefile](Makefile) to your project
 
 ## Compose Support
 
+Only docker compose is supported.
+
 - `up`
 - `stop`
 - `clean` stops the containers, removes orphans and volumes
@@ -31,6 +33,8 @@ Either clone this repo, or copy the [Makefile](Makefile) to your project
 
 ###
 ## Options
+
+Automatically setting `IMAGE_*` requires docker being present
 
 - `COMPOSE_FILE`
 - `CONTAINER_CONTEXT`
