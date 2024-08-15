@@ -17,7 +17,8 @@ CONTAINER_TAG ?= latest
 IMAGE_OSTYPE ?= $(shell docker info --format '{{ .OSType }}')
 IMAGE_ARCHITECTURE ?= $(shell docker info --format '{{ .Architecture }}')
 IMAGE_PLATFORM ?= $(IMAGE_OSTYPE)/$(IMAGE_ARCHITECTURE)
-TAG ?= $(CONTAINER_REPO)/$(CONTAINER_LIBRARY)/$(CONTAINER_IMAGE):$(CONTAINER_TAG)
+SHORT_TAG ?= $(CONTAINER_IMAGE):$(CONTAINER_TAG)
+TAG ?= $(CONTAINER_REPO)/$(CONTAINER_LIBRARY)/$(SHORT_TAG)
 _SOURCE_REPOSITORY ?= https://raw.githubusercontent.com/jhriv/generic-container-makefile/main
 
 
@@ -49,6 +50,7 @@ build:
 		--file $(CONTAINER_FILE) \
 		--platform $(IMAGE_PLATFORM) \
 		--tag $(TAG) \
+		--tag $(SHORT_TAG) \
 		$(CONTAINER_CONTEXT)
 
 .PHONY: run
