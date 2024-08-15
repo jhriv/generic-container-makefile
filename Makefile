@@ -7,7 +7,7 @@ include $(wildcard .make.env)
 # these can inherit from the environment
 COMPOSE_FILE ?= $(firstword $(wildcard compose.yaml compose.yml docker-compose.yaml docker-compose.yml))
 CONTAINER_CONTEXT ?= $(dir $(realpath $(WHOAMI)))
-CONTAINER_ENGINE ?= $(shell /usr/bin/which podman || /usr/bin/which docker || echo false)
+CONTAINER_ENGINE ?= $(shell /usr/bin/which docker || /usr/bin/which podman || echo false)
 CONTAINER_FILE ?= $(firstword $(wildcard Containerfile Dockerfile))
 CONTAINER_IMAGE ?= $(notdir $(PWD))
 CONTAINER_LIBRARY ?= $(shell id -un)
