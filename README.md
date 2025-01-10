@@ -6,7 +6,7 @@ Provide a not-very-opinionated `Makefile` with simple targets for building and r
 
 ## Instructions
 
-Either clone this repo, or copy the [Makefile](Makefile) to your project
+Either clone this repo, or copy the [Makefile](https://raw.githubusercontent.com/jhriv/generic-container-makefile/refs/heads/main/Makefile) to your project
 
 ## Usage
 
