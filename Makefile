@@ -36,7 +36,7 @@ Dockerfile compose.yaml:
 	   echo; \
 	   sed -nE 's/(^[A-Z][A-Z_]*) \?=.*/\1/p' $(realpath $(WHOAMI)) \
 		| while read V; do \
-			echo "# $$V := $$($(MAKE) -f $(WHOAMI) V=$$V _print_var)"; \
+			echo "# $$V := $$($(MAKE) -f $(WHOAMI) --no-print-directory V=$$V _print_var)"; \
 		done ) > $@
 	@echo "$@ created with default values"
 
